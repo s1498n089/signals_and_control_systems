@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import math
 
-sample_rate = 10000 # Note: Nyquist frequency is 5000
+sample_rate = 10000 # Note: Nyquist frequency is 5000Hz
 cut_off_freq = 20
 cut_off_angular_freq = 2 * math.pi * cut_off_freq
 
@@ -11,7 +11,6 @@ low_pass_filter(t) = laplace_inverse(w/(s+w)) , that w = cut_off_angular_freq
 def low_pass_filter(t):
     global cut_off_angular_freq
     return cut_off_angular_freq * (math.e ** (-1 *  cut_off_angular_freq * t))
-
 
 time_axis = [i/sample_rate for i in range(sample_rate)]
 

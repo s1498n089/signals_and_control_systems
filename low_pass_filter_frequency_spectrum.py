@@ -3,11 +3,11 @@ import math
 import cmath
 
 bode_type = True
-sample_rate = 100000 # Note: Nyquist frequency is sample_rate / 2
+sample_rate = 10000 # Note: Nyquist frequency is sample_rate / 2
 sample_num = 10000
 dt = 1 / sample_rate
 df = sample_rate / sample_num
-cut_off_freq = 100
+cut_off_freq = 10
 cut_off_angular_freq = 2 * math.pi * cut_off_freq
 
 print("Please wait for a 20s...")
@@ -39,13 +39,19 @@ for k in range(sample_num):
     else:                                     phase_spectrum.append(cmath.polar(complex_num)[1] * 180 / math.pi)
     
 # plot    
-plt.title('DFT')
+fig, axs = plt.subplots(2)
+fig.suptitle('DFT')
+
 if bode_type == True: 
-    plt.xscale("log")
-    plt.xlabel('frequency(rad/sec)')
-    plt.ylabel('magnitude(dB)')
-else:        
-    plt.xlabel('frequency(rad/sec)')         
-    plt.ylabel('magnitude')
-plt.plot(angular_freq_axis[0:sample_num // 2], magnitude_spectrum[0:sample_num // 2]) # Note: Nyquist frequency is sample_rate / 2
+    axs[0].set_xscale('log')
+    axs[0].set(xlabel='frequency(rad/sec)', ylabel='magnitude(db)')
+else:
+    axs[0].set(xlabel='frequency(rad/sec)', ylabel='magnitude')
+axs[0].plot(angular_freq_axis[0:sample_num // 2], magnitude_spectrum[0:sample_num // 2])
+
+axs[1].set(xlabel='frequency(rad/sec)', ylabel='phase')
+if bode_type == True: 
+    axs[1].set_xscale('log')
+axs[1].plot(angular_freq_axis[0:sample_num // 2], phase_spectrum[0:sample_num // 2])
+
 plt.show()

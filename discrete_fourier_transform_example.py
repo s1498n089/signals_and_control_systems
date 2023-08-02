@@ -29,8 +29,12 @@ for k in range(sample_num):
     else:                                     phase_spectrum.append(cmath.polar(complex_num)[1] * 180 / math.pi)
 
 # plot    
-plt.title('DFT')
-plt.plot(angular_freq_axis[0:sample_num // 2], magnitude_spectrum[0:sample_num // 2]) # Note: Nyquist frequency is sample_rate / 2
-plt.xlabel('frequency(rad/sec)')
-plt.ylabel('magnitude')
+fig, axs = plt.subplots(2)
+fig.suptitle('DFT')
+axs[0].set(xlabel='frequency(rad/sec)', ylabel='magnitude')
+axs[0].plot(angular_freq_axis[0:sample_num // 2], magnitude_spectrum[0:sample_num // 2])
+
+axs[1].set(xlabel='frequency(rad/sec)', ylabel='phase')
+axs[1].plot(angular_freq_axis[0:sample_num // 2], phase_spectrum[0:sample_num // 2])
+
 plt.show()

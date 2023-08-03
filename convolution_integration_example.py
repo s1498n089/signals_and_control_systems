@@ -4,15 +4,15 @@ import math
 sample_rate = 10000 # Note: Nyquist frequency is sample_rate / 2
 sample_num = 1000
 dt = 1 / sample_rate
-cut_off_freq = 20
-cut_off_angular_freq = 2 * math.pi * cut_off_freq
+cut_off_freq_hertz = 20
+cut_off_freq_angular = 2 * math.pi * cut_off_freq_hertz
 
 '''
-low_pass_filter(t) = laplace_inverse(w/(s+w)) , that w = cut_off_angular_freq
+low_pass_filter(t) = laplace_inverse(w/(s+w)) , that w = cut_off_freq_angular
 '''
 def low_pass_filter(t):
-    global cut_off_angular_freq
-    return cut_off_angular_freq * (math.e ** (-1 *  cut_off_angular_freq * t))
+    global cut_off_freq_angular
+    return cut_off_freq_angular * (math.e ** (-1 *  cut_off_freq_angular * t))
 
 time_axis = [i * dt for i in range(sample_num)]
 

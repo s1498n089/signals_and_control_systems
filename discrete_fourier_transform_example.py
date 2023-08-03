@@ -22,7 +22,7 @@ for k in range(sample_num):
     complex_num = 0
     for i in range(sample_num):
         complex_num += ( input_signal[i] * cmath.rect(1, -2 * math.pi * k * i / sample_num) ) # cmath.rect(r, phi)
-    magnitude_spectrum.append(cmath.polar(complex_num)[0] * dt) # Don't forget to multiply by dt
+    magnitude_spectrum.append(cmath.polar(complex_num)[0] / sample_num) # Don't forget to divide by sample_num
     real_part = round(complex_num.real, 7)
     imag_part = round(complex_num.imag, 7)
     if real_part == 0.0 and imag_part == 0.0: phase_spectrum.append(0)

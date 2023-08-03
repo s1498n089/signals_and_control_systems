@@ -5,11 +5,11 @@ import scipy.signal as sig
 sample_rate = 10000 # Note: Nyquist frequency is sample_rate / 2 
 sample_num = 1000
 dt = 1 / sample_rate
-cut_off_freq = 20
-cut_off_angular_freq = 2 * math.pi * cut_off_freq
+cut_off_freq_hertz = 20
+cut_off_freq_angular = 2 * math.pi * cut_off_freq_hertz
 
-num = cut_off_angular_freq # w
-den = [1, cut_off_angular_freq] # s^1 + w
+num = cut_off_freq_angular # w
+den = [1, cut_off_freq_angular] # s^1 + w
 low_pass = sig.TransferFunction(num, den)  # get transfer function
 low_pass = low_pass.to_discrete(dt, method='bilinear') # from s-domain to z-domain using bilinear method
 '''
